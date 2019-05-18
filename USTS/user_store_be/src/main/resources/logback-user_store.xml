@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+    <appender name="technical" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>D:/user_store_technical_log.log</File>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+            <FileNamePattern>D:/user_store_technical_log_%i.log</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <appender name="business" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>D:/user_store_business_log.log</File>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} - %msg%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>10</maxIndex>
+            <FileNamePattern>D:/user_store_business_log_%i.log</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <logger name="technical" additivity="false" level="DEBUG">
+        <appender-ref ref="technical"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <logger name="org.springframework.ws.client.MessageTracing.received" level="TRACE"/>
+    <logger name="org.springframework.scheduling" level="info"/>
+    <logger name="business" additivity="false" level="INFO">
+        <appender-ref ref="business"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <logger name="org.springframework" additivity="false" level="INFO">
+        <appender-ref ref="technical"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+    <logger name="com.user_store.demo.security" level="INFO"/>
+    <logger name="org.springframework.ws.client.MessageTracing.sent" level="TRACE"/>
+    <root level="DEBUG">
+        <appender-ref ref="technical"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

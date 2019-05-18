@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: pascal_frequent_generator
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Viktor
+Implementation-Vendor-Id: com.purvanovv
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/USTS/pascal_frequent_generator
+Created-By: Maven Integration for Eclipse
+
